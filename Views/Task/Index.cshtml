@@ -1,0 +1,108 @@
+@model List<WorkManager.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+    string GetProgressColor(int progress) => progress switch {
+        <= 25 => "bg-danger",
+        <= 50 => "bg-warning",
+        <= 75 => "bg-primary",
+        _ => "bg-success"
+    };
+}
+
+<div class="container py-5">
+    <h2 class="mb-4 fw-bold text-primary">📋 Danh sách công việc</h2>
+
+    <form asp-action="Create" method="post" class="row g-2 mb-4 align-items-center">
+        <div class="col-md-5">
+            <input name="Name" class="form-control" placeholder="Tên công việc" required />
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="Progress" class="form-control" placeholder="Hoàn thành (%)" min="0" max="100" required />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">+ Thêm</button>
+        </div>
+    </form>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="list-group">
+            @foreach (var task in Model)
+            {
+                var progressColor = GetProgressColor(task.Progress);
+                <div class="list-group-item shadow-sm mb-3 rounded d-flex justify-content-between align-items-center">
+                    <div style="width: 80%">
+                        <div class="fw-semibold fs-5">@task.Name</div>
+                        <div class="progress mt-2" style="height: 20px;">
+                            <div class="progress-bar @progressColor fw-bold" role="progressbar" style="width: @task.Progress%;" aria-valuenow="@task.Progress" aria-valuemin="0" aria-valuemax="100">
+                                @task.Progress%
+                            </div>
+                        </div>
+                    </div>
+                    <form asp-action="Delete" asp-route-id="@task.Id" method="post" class="ms-3">
+                        <button class="btn btn-outline-danger btn-sm" title="Xoá công việc">🗑️</button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">⚠️ Chưa có công việc nào được thêm.</div>
+    }
+</div>
+
+<!-- Toast Notification -->
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+    <div class="toast-container position-fixed bottom-0 end-0 p-3 z-3">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ✅ @TempData["SuccessMessage"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+        else if (TempData["DeletedMessage"] != null)
+        {
+            <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        🗑️ @TempData["DeletedMessage"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+        else if (TempData["ErrorMessage"] != null)
+        {
+            <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ❌ @TempData["ErrorMessage"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toasts = document.querySelectorAll('.toast');
+            toasts.forEach(toastEl => {
+                const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+                toast.show();
+            });
+        });
+    </script>
+}

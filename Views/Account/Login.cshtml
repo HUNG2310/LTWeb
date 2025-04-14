@@ -1,0 +1,91 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Đăng nhập - WorkManager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f4f6f8;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007bff;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .btn-login {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+
+        .login-icon {
+            font-size: 40px;
+            text-align: center;
+            display: block;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .error-msg {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-icon">
+            🔐
+        </div>
+        <div class="login-title">Đăng nhập</div>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="error-msg">@ViewBag.Error</div>
+        }
+
+        <form asp-controller="Account" asp-action="Login" method="post">
+            <div class="mb-3">
+                <label for="username" class="form-label">Tên đăng nhập</label>
+                <input type="text" name="username" id="username" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" name="password" id="password" class="form-control" required />
+            </div>
+            <button type="submit" class="btn btn-login w-100">Đăng nhập</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - WorkManager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style>
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-link {
+            transition: background-color 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            background-color: #e0e0e0;
+            border-left: 4px solid #007bff;
+        }
+
+        @@media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -250px;
+                top: 0;
+                background-color: white;
+            }
+
+            .sidebar.show {
+                left: 0;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.4);
+                z-index: 999;
+            }
+
+            .overlay.show {
+                display: block;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        @@media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
+
+            .overlay {
+                display: none !important;
+            }
+
+            .sidebar {
+                position: relative;
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Toggle button for mobile -->
+    <button class="btn btn-outline-primary m-2 menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="bg-white shadow p-3 sidebar">
+            <h2 class="fs-5 fw-bold">WorkManager</h2>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Task" ? "active" : "")" asp-controller="Task" asp-action="Index">📋 Bảng công việc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Template" ? "active" : "")" asp-controller="Template" asp-action="Index">📝 Mẫu công việc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">🏠 Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Stats" ? "active" : "")" asp-controller="Stats" asp-action="Index">📊 Thống kê</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" ? "active" : "")" asp-controller="User" asp-action="Index">👥 Người dùng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Settings" ? "active" : "")" asp-controller="Settings" asp-action="Index">⚙️ Cài đặt</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">🚪 Đăng xuất</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        @* <div class="flex-grow-1 p-4">
+            <!-- Thông báo TempData -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> *@
+            }
+
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+
+        // Tự động đóng thông báo sau 3 giây
+        document.addEventListener('DOMContentLoaded', function () {
+            const alerts = document.querySelectorAll('.alert-dismissible');
+            if (alerts.length) {
+                setTimeout(() => {
+                    alerts.forEach(alertEl => {
+                        const bsAlert = new bootstrap.Alert(alertEl);
+                        bsAlert.close();
+                    });
+                }, 3000);
+            }
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

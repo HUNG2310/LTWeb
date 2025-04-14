@@ -1,0 +1,54 @@
+﻿@model List<WorkManager.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Danh sách công việc";
+    string GetProgressColor(int progress) => progress switch {
+        <= 25 => "bg-danger",
+        <= 50 => "bg-warning",
+        <= 75 => "bg-primary",
+        _ => "bg-success"
+    };
+}
+
+<div class="container py-5">
+    <h2 class="mb-4 fw-bold text-primary">📋 Danh sách công việc</h2>
+
+    <form asp-action="AddTask" method="post" class="row g-2 mb-4 align-items-center">
+        <div class="col-md-5">
+            <input name="taskName" class="form-control" placeholder="Tên công việc" required />
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="progress" class="form-control" placeholder="Hoàn thành (%)" min="0" max="100" required />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success w-100">+ Thêm</button>
+        </div>
+    </form>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="list-group">
+            @foreach (var task in Model)
+            {
+                var progressColor = GetProgressColor(task.Progress);
+                <div class="list-group-item shadow-sm mb-3 rounded d-flex justify-content-between align-items-center">
+                    <div style="width: 80%">
+                        <div class="fw-semibold fs-5">@task.Name</div>
+                        <div class="progress mt-2" style="height: 20px;">
+                            <div class="progress-bar @progressColor fw-bold" role="progressbar" style="width: @task.Progress%;" aria-valuenow="@task.Progress" aria-valuemin="0" aria-valuemax="100">
+                                @task.Progress%
+                            </div>
+                        </div>
+                    </div>
+                    <form asp-action="DeleteTask" asp-route-id="@task.Id" method="post" class="ms-3">
+                        <button class="btn btn-outline-danger btn-sm" title="Xoá công việc">🗑️</button>
+                    </form>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">⚠️ Chưa có công việc nào được thêm.</div>
+    }
+</div>
