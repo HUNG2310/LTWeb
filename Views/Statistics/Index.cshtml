@@ -1,0 +1,16 @@
+@model WorkManager.Models.StatisticsViewModel
+
+@{
+    ViewData["Title"] = "Thống kê công việc";
+}
+
+<h2 class="mb-3 text-primary">Thống kê công việc</h2>
+
+<div class="card">
+    <div class="card-body">
+        <p><strong>Tổng số công việc:</strong> @Model.TotalTasks</p>
+        <p><strong>Số công việc đã hoàn thành:</strong> @Model.CompletedTasks</p>
+        <p><strong>Số công việc chưa hoàn thành:</strong> @Model.PendingTasks</p>
+        <p><strong>Tỷ lệ hoàn thành trung bình:</strong> @Model.AverageCompletion.ToString("F2") %</p>
+    </div>
+</div>

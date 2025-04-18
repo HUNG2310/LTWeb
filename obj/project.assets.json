@@ -4715,11 +4715,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager\\workManager.csproj",
+      "projectUniqueName": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager1\\LTWeb\\workManager.csproj",
       "projectName": "workManager",
-      "projectPath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager\\workManager.csproj",
+      "projectPath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager1\\LTWeb\\workManager.csproj",
       "packagesPath": "C:\\Users\\quyen\\.nuget\\packages\\",
-      "outputPath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager\\obj\\",
+      "outputPath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager1\\LTWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\quyen\\AppData\\Roaming\\NuGet\\NuGet.Config"

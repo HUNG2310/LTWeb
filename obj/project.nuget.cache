@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rrJOFeHTC2A=",
+  "dgSpecHash": "fed7xbvAfUg=",
   "success": true,
-  "projectFilePath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager\\workManager.csproj",
+  "projectFilePath": "I:\\LapTrinhWeb\\Doan\\CodeDoAn\\workManager1\\LTWeb\\workManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quyen\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\quyen\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

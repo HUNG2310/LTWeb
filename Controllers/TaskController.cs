@@ -34,6 +34,7 @@ namespace WorkManager.Controllers
 
             if (ModelState.IsValid)
             {
+                // Sử dụng giá trị mặc định của model nếu không có giá trị nhập vào
                 _context.Tasks.Add(model);
                 _context.SaveChanges();
 
@@ -45,23 +46,47 @@ namespace WorkManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // Xoá công việc
-       [HttpPost]
-public IActionResult Delete(int id)
-{
-    var task = _context.Tasks.Find(id);
-    if (task != null)
-    {
-        _context.Tasks.Remove(task);
-        _context.SaveChanges();
-        TempData["DeletedMessage"] = $"Đã xóa công việc: {task.Name}";
-    }
-    else
-    {
-        TempData["ErrorMessage"] = "Không tìm thấy công việc để xóa.";
-    }
-    return RedirectToAction("Index");
-}
+        // Xóa công việc
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var task = _context.Tasks.Find(id);
+            if (task != null)
+            {
+                _context.Tasks.Remove(task);
+                _context.SaveChanges();
+                TempData["DeletedMessage"] = $"Đã xóa công việc: {task.Name}";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy công việc để xóa.";
+            }
+            return RedirectToAction("Index");
+        }
 
+        // Đánh dấu công việc đã hoàn thành
+        [HttpPost]
+        public IActionResult Complete(int id)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("IsLoggedIn")))
+                return RedirectToAction("Login", "Account");
+
+            var task = _context.Tasks.Find(id);
+            if (task == null)
+            {
+                TempData["ErrorMessage"] = "Công việc không tồn tại.";
+                return RedirectToAction("Index");
+            }
+
+            task.IsCompleted = true;
+            task.Progress = 100;
+            task.Status = "Completed";
+            task.CompletionPercentage = 100;
+
+            _context.SaveChanges();
+
+            TempData["SuccessMessage"] = $"Công việc '{task.Name}' đã được hoàn thành!";
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -17,57 +17,61 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = workManager
 build_property.RootNamespace = workManager
-build_property.ProjectDir = I:\LapTrinhWeb\Doan\CodeDoAn\workManager\
+build_property.ProjectDir = I:\LapTrinhWeb\Doan\CodeDoAn\workManager1\LTWeb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = I:\LapTrinhWeb\Doan\CodeDoAn\workManager
+build_property.MSBuildProjectDirectory = I:\LapTrinhWeb\Doan\CodeDoAn\workManager1\LTWeb
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Account/Login.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Home/Index.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Home/Privacy.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Shared/Error.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Shared/_LoginLayout.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Shared/_LoginLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Shared/_ValidationScriptsPartial.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Task/Index.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Statistics/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhdGlzdGljc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Task/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGFza1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Template/Index.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Template/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVtcGxhdGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/_ViewImports.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/_ViewStart.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[I:/LapTrinhWeb/Doan/CodeDoAn/workManager/Views/Shared/_Layout.cshtml]
+[I:/LapTrinhWeb/Doan/CodeDoAn/workManager1/LTWeb/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-wq97te8zya
