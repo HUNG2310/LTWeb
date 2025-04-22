@@ -78,14 +78,13 @@
     </style>
 </head>
 <body class="bg-light">
-    <!-- Toggle button cho mobile -->
-    <button class="btn btn-outline-primary m-2 menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
 
-    <!-- Overlay cho mobile -->
+
+
     <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
 
     <div class="d-flex">
-        <!-- Sidebar -->
+
         <nav id="sidebar" class="bg-white shadow p-3 sidebar">
             <h2 class="fs-5 fw-bold">WorkManager</h2>
             <ul class="nav flex-column">
@@ -115,7 +114,7 @@
             </ul>
         </nav>
 
-        <!-- Main Content -->
+    
         <div class="flex-grow-1 p-4">
             @RenderBody()
         </div>
@@ -130,7 +129,6 @@
             overlay.classList.toggle('show');
         }
 
-        // Tự động đóng thông báo (alert) sau 3 giây, nếu có
         document.addEventListener('DOMContentLoaded', function () {
             const alerts = document.querySelectorAll('.alert-dismissible');
             if (alerts.length) {

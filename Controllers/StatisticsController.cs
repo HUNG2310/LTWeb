@@ -20,7 +20,7 @@ namespace WorkManager.Controllers
             var totalTasks = _context.Tasks.Count();
             var completedTasks = _context.Tasks.Count(t => t.IsCompleted);
             var pendingTasks = totalTasks - completedTasks;
-            // Tính tỷ lệ hoàn thành trung bình, nếu có công việc tồn tại
+         
             double averageCompletion = (totalTasks > 0)
                 ? _context.Tasks.Average(t => t.CompletionPercentage)
                 : 0;

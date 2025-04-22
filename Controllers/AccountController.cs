@@ -27,7 +27,7 @@ namespace WorkManager.Controllers
             var user = _context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             if (user != null)
             {
-                // ✅ Dùng session để lưu trạng thái đăng nhập
+                // Dùng session để lưu trạng thái đăng nhập
                 HttpContext.Session.SetString("IsLoggedIn", "true");
                 return RedirectToAction("Index", "Task");
             }
@@ -38,7 +38,7 @@ namespace WorkManager.Controllers
 
         public IActionResult Logout()
         {
-            // ✅ Xóa session khi đăng xuất
+            // Xóa session khi đăng xuất
             HttpContext.Session.Remove("IsLoggedIn");
             return RedirectToAction("Login");
         }

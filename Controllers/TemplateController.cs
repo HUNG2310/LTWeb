@@ -14,14 +14,13 @@ namespace WorkManager.Controllers
             _context = context;
         }
 
-        // GET: /Template
+
         public IActionResult Index()
         {
             var list = _context.Templates.ToList();
             return View(list);
         }
 
-        // POST: /Template/Create
         [HttpPost]
         public IActionResult Create(string name, string? description)
         {
@@ -43,7 +42,6 @@ namespace WorkManager.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: /Template/Delete/5
         public IActionResult Delete(int id)
         {
             var tpl = _context.Templates.Find(id);

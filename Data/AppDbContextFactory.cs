@@ -10,8 +10,8 @@ namespace WorkManager.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory()) // lấy đường dẫn gốc
-                .AddJsonFile("appsettings.json")              // đọc connection string
+                .SetBasePath(Directory.GetCurrentDirectory()) 
+                .AddJsonFile("appsettings.json")             
                 .Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();

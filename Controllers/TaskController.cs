@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using WorkManager.Data;
 using WorkManager.Models;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace WorkManager.Controllers
 {
@@ -15,9 +16,10 @@ namespace WorkManager.Controllers
             _context = context;
         }
 
-        // Hiển thị danh sách công việc
+        // Hiển thị danh sách công việc và form thêm mới
         public IActionResult Index()
         {
+            // Kiểm tra đăng nhập qua Session (nếu chưa đăng nhập chuyển hướng về trang Login).
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("IsLoggedIn")))
                 return RedirectToAction("Login", "Account");
 
@@ -34,19 +36,16 @@ namespace WorkManager.Controllers
 
             if (ModelState.IsValid)
             {
-                // Sử dụng giá trị mặc định của model nếu không có giá trị nhập vào
                 _context.Tasks.Add(model);
                 _context.SaveChanges();
-
                 TempData["SuccessMessage"] = "Thêm công việc thành công!";
                 return RedirectToAction(nameof(Index));
             }
-
             TempData["ErrorMessage"] = "Dữ liệu không hợp lệ, vui lòng kiểm tra lại.";
             return RedirectToAction(nameof(Index));
         }
 
-        // Xóa công việc
+        // Xoá công việc
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -64,29 +63,29 @@ namespace WorkManager.Controllers
             return RedirectToAction("Index");
         }
 
-        // Đánh dấu công việc đã hoàn thành
+        // Action chỉnh sửa phần trăm hoàn thành
         [HttpPost]
-        public IActionResult Complete(int id)
+        public async Task<IActionResult> EditCompletion(int id, int completionPercentage)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("IsLoggedIn")))
-                return RedirectToAction("Login", "Account");
-
-            var task = _context.Tasks.Find(id);
+            var task = await _context.Tasks.FindAsync(id);
             if (task == null)
+                return NotFound();
+
+            task.CompletionPercentage = completionPercentage;
+
+            if (completionPercentage == 100)
             {
-                TempData["ErrorMessage"] = "Công việc không tồn tại.";
-                return RedirectToAction("Index");
+                task.IsCompleted = true;
+                TempData["SuccessMessage"] = $"Công việc '{task.Name}' đã hoàn thành!";
+            }
+            else
+            {
+                task.IsCompleted = false;
+                TempData["SuccessMessage"] = $"Đã cập nhật % hoàn thành của '{task.Name}' thành {completionPercentage}%";
             }
 
-            task.IsCompleted = true;
-            task.Progress = 100;
-            task.Status = "Completed";
-            task.CompletionPercentage = 100;
-
-            _context.SaveChanges();
-
-            TempData["SuccessMessage"] = $"Công việc '{task.Name}' đã được hoàn thành!";
-            return RedirectToAction("Index");
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
