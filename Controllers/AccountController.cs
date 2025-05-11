@@ -21,21 +21,29 @@ namespace WorkManager.Controllers
             return View();
         }
 
-        [HttpPost]
+                [HttpPost]
         public IActionResult Login(string username, string password)
         {
             var user = _context.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
             if (user != null)
             {
-                // Dùng session để lưu trạng thái đăng nhập
+                // Lưu thông tin vào session
                 HttpContext.Session.SetString("IsLoggedIn", "true");
+                HttpContext.Session.SetString("Username", user.Username);
+                HttpContext.Session.SetString("FullName", user.FullName);
+                HttpContext.Session.SetString("Email", user.Email);
+                HttpContext.Session.SetString("PhoneNumber", user.PhoneNumber);
+                HttpContext.Session.SetString("DateOfBirth", user.DateOfBirth.ToString("yyyy-MM-dd"));
+                HttpContext.Session.SetString("Position", user.Position);
+                HttpContext.Session.SetString("Gender", user.Gender);
+                
+                // Trả về trang chính
                 return RedirectToAction("Index", "Task");
             }
 
             ViewBag.Error = "Sai tên đăng nhập hoặc mật khẩu";
             return View();
         }
-
         public IActionResult Logout()
         {
             // Xóa session khi đăng xuất

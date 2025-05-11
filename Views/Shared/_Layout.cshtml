@@ -100,13 +100,15 @@
                     <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Stats" || ViewContext.RouteData.Values["controller"]?.ToString() == "Statistics" ? "active" : "")"
                        asp-controller="Statistics" asp-action="Index">📊 Thống kê</a>
                 </li>
+              
                 <li class="nav-item">
                     <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "User" ? "active" : "")"
-                       asp-controller="User" asp-action="Index">👥 Người dùng</a>
+                       asp-controller="User" asp-action="Profile">👤 Người dùng</a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-dark @(ViewContext.RouteData.Values["controller"]?.ToString() == "Settings" ? "active" : "")"
-                       asp-controller="Settings" asp-action="Index">⚙️ Cài đặt</a>
+                    asp-controller="Settings" asp-action="Index">⚙️ Cài đặt</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">🚪 Đăng xuất</a>
@@ -143,5 +145,15 @@
     </script>
 
     @RenderSection("Scripts", required: false)
+    @if (Context.Session.GetString("Username") != null)
+        {
+            <p>Xin chào, @Context.Session.GetString("FullName")!</p>
+        }
+        else
+        {
+            <p>Bạn chưa đăng nhập.</p>
+            <a asp-controller="Account" asp-action="Login" class="btn btn-sm btn-outline-danger">Đăng nhập</a>
+        }
+
 </body>
 </html>

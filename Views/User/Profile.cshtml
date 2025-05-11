@@ -1,0 +1,14 @@
+@model WorkManager.Models.User
+
+<h1>Thông tin tài khoản</h1>
+
+<table class="table table-striped">
+    <tr><th>Họ tên:</th><td>@Model.FullName</td></tr>
+    <tr><th>Email:</th><td>@Model.Email</td></tr>
+    <tr><th>Số điện thoại:</th><td>@Model.PhoneNumber</td></tr>
+    <tr><th>Ngày sinh:</th><td>@Model.DateOfBirth.ToString("dd/MM/yyyy")</td></tr>
+    <tr><th>Chức vụ:</th><td>@Model.Position</td></tr>
+    <tr><th>Giới tính:</th><td>@Model.Gender</td></tr>
+</table>
+
+<a href="@Url.Action("EditProfile")" class="btn btn-primary">Chỉnh sửa thông tin</a>
